@@ -1,36 +1,40 @@
 require 'pry'
 
 class Author 
-  attr_accessor :name, :posts 
   
-  @post_count = 0
+ 
+  
+  attr_accessor :name 
   
   
   def initialize(name)
     @name = name
-    @posts = []
+    
   end 
   
-   
+  
   def add_post(post)
-     @post << post
-     post.author = self
-    @@post_count += 1
+    post.author = self
   end
-  
-  def add_post_by_title(title)
-    title = Post.new(title)
-    title.author = self
-    @post << title
-    @@post_count += 1 
+     
+    def post 
+      Post.all.select so |post|
+      post.author == self
+    end  
+     
+  def add_post_by_title(name)
+    post = Post.new(name)
+    post.author = self
   end 
+    
+  
     
   def self.post_count
-    @@post_count
+    Post.all.count
   end
     
-    
 end 
+
 
 
 
